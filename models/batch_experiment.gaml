@@ -1,5 +1,7 @@
 model ASF_Network_Simulation
 
+import "main.gaml"
+
 experiment Batch_Connectivity_Scenarios type: batch repeat: 6 keep_seed: false parallel: 6 until: (current_week >= max_simulation_weeks) {
     
     parameter "Enable Culling" var: culling_enabled init: false;

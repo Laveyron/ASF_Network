@@ -1,5 +1,7 @@
 model ASF_Network_Simulation
 
+import "main.gaml"
+
 experiment ASF_GUI_Simulation type: gui {
     parameter "Mức độ kết nối" var: connectivity_scenario among: ["Thấp", "Cơ sở", "Cao"];
     parameter "Xác suất truyền nhiễm" var: transmission_probability min: 0.1 max: 1.0 step: 0.1;
