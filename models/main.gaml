@@ -25,17 +25,18 @@ global {
     reflex weekly_update when: current_week < max_simulation_weeks {
         current_week <- current_week + 1;
 
-        do update_statistics(); 
-            
-        do update_network_stergm();
-
-        list<farm> newly_infected <- [];
+		list<farm> newly_infected <- [];
         if num_infected_farms > 0 {
             newly_infected <- do_transmission();
             if !empty(newly_infected) {
                 do process_infections(newly_infected);
             }
         }
+
+        do update_statistics(); 
+        
+        do update_network_stergm();
+
 
         bool should_cull <- culling_enabled and 
                            first_infection_week >= 0 and 
@@ -52,10 +53,6 @@ global {
             peak_infected <- num_infected_farms;
             week_of_peak <- current_week;
         }
-
-        int current_edges <- length(edge_connection);
-        float current_mean_degree <- !empty(farm where (each.status != "removed")) ? 
-              mean((farm where (each.status != "removed")) collect float(length(each.trading_partners))) : 0.0;
               
         if current_week <= 1 {
             write "";
@@ -65,12 +62,10 @@ global {
         }
             
         write "Week " + current_week + " | Susceptible:" + num_susceptible_farms + 
-              " Infected:" + num_infected_farms + " Remove:" + num_removed_farms +
-              " | New Infected:" + length(newly_infected);
-              
-        write "Isolated farms: " + isolated + " (" + round(isolated * 100.0 / farms_count) + "%)";
-              
-//        write total_edges;
+              " Infected:" + num_infected_farms + " | New Infected:" + length(newly_infected);
+        
+//        write "Isolated farms: " + isolated + " (" + round(isolated * 100.0 / farms_count) + "%)";
+//        write mean_degree;      
         
         if current_week >= max_simulation_weeks {
             do finalize();

@@ -7,6 +7,7 @@ experiment ASF_GUI_Simulation type: gui {
     parameter "Tuần tiêu hủy" var: culling_timing min: 1 max: 52 step: 1;
     parameter "Kích hoạt duy trì liên kết" var: edge_duration_enabled;
     parameter "Thời gian duy trì liên kết (tuần)" var: edge_duration min: 6 max: 52 step: 1;
+    parameter "Áp dụng hàm kernel truyền nhiễm" var: spatial_sampling_enabled init: false;
     
     output synchronized: true {
         display map type: opengl 

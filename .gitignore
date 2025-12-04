@@ -3,3 +3,5 @@ results/
 .project
 .cache/
 .metatdata/
+includes/data/farm_data/generated_farms_test.csv
+includes/data/farm_data/generated_farms.csv

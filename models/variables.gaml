@@ -6,7 +6,7 @@ global {
     file water_file <- file("../includes/data/shapefiles/hai_duong_water.shp");
     file waterways_file <- file("../includes/data/shapefiles/hai_duong_waterways.shp");
     file farm_file <- file("../includes/data/farm_data/farm.csv");
-//    file farm_file <- file("../includes/data/farm_data/generated_farms_test.csv");
+//    file farm_file <- file("../includes/data/farm_data/generated_farms_test.csv"); 
     
     geometry shape <- envelope(boundary_file + roads_file + water_file + waterways_file);
     
@@ -20,14 +20,12 @@ global {
     
     bool edge_duration_enabled <- false;
     int edge_duration <- 26;
-    float dissolution_rate <- 0.5;
-    
-    float transmission_probability <- 0.6;
-    
-    map<string, float> contact_rates <- [
+    float dissolution_rate <- 1.0;
+
+	map<string, float> contact_rates <- [
         "1-1"::0.241, "1-2"::0.169, "1-3"::0.0,
-        "2-1"::0.169, "2-2"::0.236, "2-3"::0.021,
-        "3-1"::0.0,   "3-2"::0.021, "3-3"::0.021
+        "2-1"::0.241, "2-2"::0.236, "2-3"::0.021,
+        "3-1"::0.0,   "3-2"::0.236, "3-3"::0.021
     ];
     
     map<int, int> farms_by_type <- [1::0, 2::0, 3::0];
@@ -39,8 +37,10 @@ global {
     int culling_timing <- 16;
     
     float k0 <- 1.0;           
-    float r0 <- 0.55;      
+    float r0 <- 3.0;      
     float alpha <- 2.27;
+
+    float transmission_probability <- 0.6;
     
     int farms_count;
     int isolated;
@@ -60,6 +60,6 @@ global {
     int peak_infected <- 0;
     int week_of_peak <- 0;
 
-    string csv_file_path <- "../results/scenario_connectivity_baseline_results.csv";
+    string csv_file_path <- "../results/kernel_baseline_results.csv";
     string marker_file_path <- "../results/.csv_initialized";
 }

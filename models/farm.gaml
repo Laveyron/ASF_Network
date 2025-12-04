@@ -11,19 +11,23 @@ species farm {
     aspect default {
         float size;
         switch farm_type {
-            match 1 { size <- 60.0; }
-            match 2 { size <- 100.0; }
-            match 3 { size <- 140.0; }
+            match 1 { size <- 80.0; }
+            match 2 { size <- 120.0; }
+            match 3 { size <- 170.0; }
         }
         
         rgb color_farm;
         switch status {
             match "susceptible" { color_farm <- rgb(27, 158, 119); }
-            match "infected" { color_farm <- rgb(255, 0, 255); }
+            match "infected" { color_farm <- rgb(255, 0, 255); size <- 120.0;}
             match "removed" { color_farm <- rgb(255, 0, 0); }
         }
         
         draw circle(size) color: color_farm border: #black width: 0.1;
+        
+//        if status = "infected" {
+//        	draw circle (3000) color: rgb(255, 0, 0, 50) border: #red;
+//        }
     }
     
     aspect network_view {
@@ -37,17 +41,17 @@ species farm {
         rgb color_farm;
         switch status {
             match "susceptible" { color_farm <- rgb(27, 158, 119); }
-            match "infected" { color_farm <- rgb(255, 0, 255); }
+            match "infected" { color_farm <- rgb(255, 0, 255); size <- 200.0;}
             match "removed" { color_farm <- rgb(255, 0, 0); }
         }
         
         draw circle(size) color: color_farm border: #black;
         
-        draw circle (500) color: rgb(255, 0, 0, 50) border: #red;
+//        draw circle (550) color: rgb(255, 0, 0, 50) border: #red;
        
-//        loop partner over: trading_partners {
-//            draw line([location, partner.location]) color: #black width: 1;
-//        }
+        loop partner over: trading_partners {
+            draw line([location, partner.location]) color: #black width: 1;
+        }
     }
 }
 
@@ -92,4 +96,5 @@ global {
             index_id <- index_farm.farm_id;
         }
     }
+    
 }

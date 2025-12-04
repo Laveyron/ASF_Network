@@ -11,12 +11,12 @@ global {
               " Medium:" + farms_by_type[2] + " Large:" + farms_by_type[3] + ")";
         write "Network: " + total_edges + " edges, mean degree: " + 
               overall_mean_degree;
-        write "Isolated farms: " + isolated + " (" + round(isolated * 100.0 / farms_count) + "%)";
+//        write "Isolated farms: " + isolated + " (" + round(isolated * 100.0 / farms_count) + "%)";
         write "Index case selected: Medium farm " + index_id;
         write "Parameters: transmission probability = " + transmission_probability;
         write "Intervention: culling " + (culling_enabled ? "ON at week " + culling_timing : "OFF");
 //        write total_edges;
-        
+//        write mean_degree;
         if total_edges < (target_edges * 0.8) {
             write "WARNING: Network formation achieved only " + 
                   round(total_edges * 100.0 / target_edges) + "% of target connectivity";
