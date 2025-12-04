@@ -10,6 +10,15 @@ experiment ASF_GUI_Simulation type: gui {
     parameter "Kích hoạt duy trì liên kết" var: edge_duration_enabled;
     parameter "Thời gian duy trì liên kết (tuần)" var: edge_duration min: 6 max: 52 step: 1;
     parameter "Áp dụng hàm kernel truyền nhiễm" var: spatial_sampling_enabled init: false;
+    parameter "Experiment ID" var: experiment_id <- "";
+    
+    reflex capture when: mod(cycle, 1) = 0 {
+        ask simulations {
+            save (snapshot(self, "map", {1920.0, 1080.0})) to: "../includes/output/map/" + experiment_id + "map" + string(cycle) + ".png";
+            save (snapshot(self, "Infections by Farm Type (Pie)", {800.0, 600.0})) to: "../includes/output/map/"+ experiment_id + "pie" + string(cycle) + ".png";
+            save (snapshot(self, "Infection Trends Over Time", {1200.0, 600.0})) to: "../includes/output/map/"+ experiment_id + "line" + string(cycle) + ".png";
+        }
+    }
     
     output synchronized: true {
         display map type: opengl 
