@@ -174,15 +174,15 @@ global {
         
         if n_active < 2 { return; }
         
-        total_edges <- length(edge_connection);
-        int edges_needed <- target_edges - total_edges;
-        
         if edge_duration_enabled {
-        	if edges_needed <= 0 { return; }
+        	ask edge_connection {
+				if (current_week - formation_time) < expected_duration {
+        			return;
+        		}
+        	}
         }
         
-        if empty(potential_partners) or 
-           abs(n_active - length(potential_partners)) > 10 {
+        if empty(potential_partners) {
             potential_partners <- [];
             ask active {
                 potential_partners[self] <- active - [self];

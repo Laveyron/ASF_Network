@@ -60,7 +60,6 @@ global {
     int peak_infected <- 0;
     int week_of_peak <- 0;
 	
-	string experiment_id;
     string csv_file_path <- "../results/kernel_baseline_results.csv";
     string marker_file_path <- "../results/.csv_initialized";
 }

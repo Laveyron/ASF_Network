@@ -9,8 +9,7 @@ global {
         write "========================================";
         write "Total farms: " + length(farm) + " (Small:" + farms_by_type[1] + 
               " Medium:" + farms_by_type[2] + " Large:" + farms_by_type[3] + ")";
-        write "Network: " + total_edges + " edges, mean degree: " + 
-              overall_mean_degree;
+        write "Mean degree: " + overall_mean_degree;
 //        write "Isolated farms: " + isolated + " (" + round(isolated * 100.0 / farms_count) + "%)";
         write "Index case selected: Medium farm " + index_id;
         write "Parameters: transmission probability = " + transmission_probability;
